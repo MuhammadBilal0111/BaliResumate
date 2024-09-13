@@ -12,6 +12,7 @@ function Header() {
           Resume Builder
         </span>
       </Navbar.Brand>
+
       <Navbar.Collapse>
         <Navbar.Link active={path === "/resume-build"}>
           <Link to="/resume-build">Resume builder App</Link>
@@ -30,4 +31,5 @@ function Header() {
     </Navbar>
   );
 }
+
 export default Header;

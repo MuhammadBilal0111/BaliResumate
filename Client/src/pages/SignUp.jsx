@@ -1,24 +1,38 @@
 import React, { useRef, useState } from "react";
-import { FloatingLabel, Button, Spinner } from "flowbite-react";
+import { FloatingLabel, Button, Spinner, Alert } from "flowbite-react";
 import { MdEmail } from "react-icons/md";
 import { GoEyeClosed, GoEye } from "react-icons/go";
 import { FaGithub, FaUser } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signUp } from "../../services/GlobalApi";
 
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const navigate = useNavigate();
   const [inputData, setInputData] = useState({});
-
   const showPasswordElement = useRef();
   const showConfirmPasswordElement = useRef();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputData);
+    try {
+      setLoading(true);
+      const res = await signUp(inputData);
+      setLoading(false);
+      navigate("/sign-in");
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+      setErrorMessage(err.response.data.message);
+    }
   };
   const handleChange = (e) => {
+    setErrorMessage(false);
     setInputData({ ...inputData, [e.target.id]: e.target.value });
   };
   return (
@@ -106,8 +120,13 @@ function SignUp() {
           </div>
 
           <Button type="submit" color="blue" className="w-full">
-            Create Account
+            {loading ? <Spinner size={"sm"} /> : "Create Account"}
           </Button>
+          {errorMessage && (
+            <Alert className="mt-3" color="failure">
+              {errorMessage}
+            </Alert>
+          )}
         </form>
         <div className="grid grid-cols-3 items-center text-gray-900">
           <hr className="border-gray-500" />

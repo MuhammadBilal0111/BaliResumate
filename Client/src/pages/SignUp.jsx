@@ -5,7 +5,6 @@ import { GoEyeClosed, GoEye } from "react-icons/go";
 import { FaGithub, FaUser } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../../services/GlobalApi";
 import { toast } from "react-toastify";
 

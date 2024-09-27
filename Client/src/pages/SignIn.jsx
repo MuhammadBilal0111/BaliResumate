@@ -13,7 +13,7 @@ import {
   signInFailure,
 } from "./../store/userSlice";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, Bounce } from "react-toastify";
 
 function SignIn() {
   const { loading, error } = useSelector((state) => state.user);
@@ -40,6 +40,7 @@ function SignIn() {
         draggable: true,
         progress: undefined,
         theme: "dark",
+        transition: Bounce,
       });
     } catch (err) {
       const errorMessage =

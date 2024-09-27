@@ -24,6 +24,7 @@ createRoot(document.getElementById("root")).render(
           draggable
           pauseOnHover
           theme="dark"
+          transition:Bounce
           bodyClassName="toastBody"
         />
       </ThemeProvider>

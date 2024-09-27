@@ -1,18 +1,37 @@
 import React, { useRef, useState } from "react";
-import { FloatingLabel, Button, Spinner } from "flowbite-react";
+import { FloatingLabel, Button, Spinner, Alert } from "flowbite-react";
 import { MdEmail } from "react-icons/md";
 import { GoEyeClosed, GoEye } from "react-icons/go";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
+import { signIn } from "../../services/GlobalApi";
+import {
+  signInStart,
+  signInSuccess,
+  signInFailure,
+} from "./../store/userSlice";
+import { useNavigate } from "react-router-dom";
 function SignIn() {
+  const { loading, error } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [inputData, setInputData] = useState({});
   const showPasswordElement = useRef();
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputData);
+    try {
+      dispatch(signInStart());
+      const user = await signIn(inputData);
+      console.log(user.data);
+      dispatch(signInSuccess(user.data));
+      navigate("/");
+    } catch (err) {
+      return dispatch(signInFailure(err.response.data.message));
+    }
   };
   const handleChange = (e) => {
     setInputData({ ...inputData, [e.target.id]: e.target.value });
@@ -22,7 +41,7 @@ function SignIn() {
       <div className="flex flex-col gap-3 border border-1 rounded-2xl w-full py-7 px-7 shadow-xl border-gray-400">
         <h1 className="text-center text-3xl font-bold">Login</h1>
         <p className="text-md text-gray-400">
-          Welcome back! Please enter your details
+          Welcome back! Lets start creatingy your professional resume in minutes
         </p>
         <form className="flex flex-col gap-2 my-2" onSubmit={handleSubmit}>
           <div className="relative">
@@ -66,8 +85,13 @@ function SignIn() {
             <Link to="/forget-password">Forget password</Link>
           </h1>
           <Button type="submit" color="blue" className="w-full">
-            Login
+            {loading ? <Spinner size="sm" /> : "Login"}
           </Button>
+          {error && (
+            <Alert color="failure" className="mt-2">
+              {error}
+            </Alert>
+          )}
         </form>
         <div className="grid grid-cols-3 items-center text-gray-900">
           <hr className="border-gray-500" />

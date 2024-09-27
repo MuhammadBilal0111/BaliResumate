@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const CustomError = require("../Utils/customErrors");
 const User = require("./../Model/UserModel");
 const asyncErrorHandler = require("../Utils/asyncErrorHandlers");
 
@@ -13,17 +14,31 @@ const createSendendResponse = (user, statusCode, res) => {
     maxAge: process.env.LOGIN_EXPIRES,
     httpOnly: true,
   };
+  const { password, ...userInfo } = user._doc;
   res.cookie("jwt", token, options);
   res.status(statusCode).json({
     status: "success",
     token,
-    data: {
-      user,
-    },
+    userInfo,
   });
 };
 
 exports.signUp = asyncErrorHandler(async (req, res, next) => {
   const user = await User.create(req.body);
+  createSendendResponse(user, 201, res);
+});
+
+exports.signIn = asyncErrorHandler(async (req, res, next) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return next(new CustomError("Please Enter Email and password", 400));
+  }
+  const user = await User.findOne({ email });
+  if (!user) {
+    return next(new CustomError("No User found! Please Sign Up", 404));
+  }
+  if (!(await user.comparePasswordInDB(password, user.password))) {
+    return next(new CustomError("Incorrect Password!", 403));
+  }
   createSendendResponse(user, 201, res);
 });

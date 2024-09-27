@@ -7,6 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../../services/GlobalApi";
+import { toast } from "react-toastify";
 
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,8 +26,17 @@ function SignUp() {
       const res = await signUp(inputData);
       setLoading(false);
       navigate("/sign-in");
+      toast.success("Sign Up Successfully!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     } catch (err) {
-      console.log(err);
       setLoading(false);
       setErrorMessage(err.response.data.message);
     }

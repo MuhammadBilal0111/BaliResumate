@@ -13,6 +13,8 @@ import {
   signInFailure,
 } from "./../store/userSlice";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 function SignIn() {
   const { loading, error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -29,8 +31,20 @@ function SignIn() {
       console.log(user.data);
       dispatch(signInSuccess(user.data));
       navigate("/");
+      toast.success("Login Successfully!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     } catch (err) {
-      return dispatch(signInFailure(err.response.data.message));
+      const errorMessage =
+        err.response?.data?.message || "An unexpected error occurred.";
+      dispatch(signInFailure(errorMessage));
     }
   };
   const handleChange = (e) => {

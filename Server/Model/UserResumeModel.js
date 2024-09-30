@@ -6,17 +6,16 @@ const userResumeSchema = mongoose.Schema({
     type: String,
     required: [true, "Title is a required field"],
   },
-  ResumeID: {
-    type: Number,
+  resumeId: {
+    type: String,
     required: [true, "Resume ID is a required field"],
   },
-  userEmail: {
+  email: {
     type: String,
     lowercase: true,
-    unique: true,
-    validate: [validator.isEmail, "User Email is a required field"],
+    validate: [validator.isEmail, "Please provide a valid email address"],
   },
-  userName: {
+  username: {
     type: String,
     required: [true, "User name is a required field"],
   },

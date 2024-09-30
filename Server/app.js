@@ -9,8 +9,8 @@ const app = express();
 app.use(express.json());
 // app.use(cookieParser());
 app.use(morgan("dev"));
-app.use("/api/user-resume", userResumeRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/user-resume", userResumeRouter);
 // client s title, uuid or email yege
 
 // global error handler middleware

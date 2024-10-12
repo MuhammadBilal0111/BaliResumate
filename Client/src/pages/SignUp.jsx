@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { FloatingLabel, Button, Spinner, Alert } from "flowbite-react";
+import { Alert, TextField, Button, CircularProgress } from "@mui/material";
 import { MdEmail } from "react-icons/md";
 import { GoEyeClosed, GoEye } from "react-icons/go";
 import { FaGithub, FaUser } from "react-icons/fa";
@@ -53,34 +53,37 @@ function SignUp() {
           ATS-friendly!
         </p>
         <form className="flex flex-col gap-2 my-2" onSubmit={handleSubmit}>
-          <div className="relative">
-            <FloatingLabel
+          <div className="relative dark:text-white">
+            <TextField
               type="text"
-              variant="filled"
+              variant="standard"
               label="Your name"
               id="username"
               onChange={handleChange}
+              className="w-full text-white"
             />
             <FaUser className="absolute top-1/2 -translate-y-1/2 right-4 z-0 text-xl" />
           </div>
           <div className="relative">
-            <FloatingLabel
+            <TextField
               type="email"
-              variant="filled"
+              variant="standard"
               label="Your Email"
               id="email"
               onChange={handleChange}
+              className="w-full text-white"
             />
             <MdEmail className="absolute top-1/2 -translate-y-1/2 right-4 z-0 text-xl" />
           </div>
           <div className="relative">
-            <FloatingLabel
+            <TextField
               type="password"
-              variant="filled"
+              variant="standard"
               label="Your Password"
               id="password"
               ref={showPasswordElement}
               onChange={handleChange}
+              className="w-full text-white"
             />
             {showPassword ? (
               <GoEye
@@ -101,13 +104,14 @@ function SignUp() {
             )}
           </div>
           <div className="relative">
-            <FloatingLabel
+            <TextField
               type="password"
-              variant="filled"
+              variant="standard"
               label="Confirm Password"
               id="confirmPassword"
               ref={showConfirmPasswordElement}
               onChange={handleChange}
+              className="w-full text-white"
             />
             {showConfirmPassword ? (
               <GoEye
@@ -129,10 +133,10 @@ function SignUp() {
           </div>
 
           <Button type="submit" color="blue" className="w-full">
-            {loading ? <Spinner size={"sm"} /> : "Create Account"}
+            {loading ? <CircularProgress size={"30px"} /> : "Create Account"}
           </Button>
           {errorMessage && (
-            <Alert className="mt-3" color="failure">
+            <Alert className="mt-3" size="30px" severity="error">
               {errorMessage}
             </Alert>
           )}

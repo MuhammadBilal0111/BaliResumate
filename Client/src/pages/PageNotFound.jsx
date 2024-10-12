@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button } from "flowbite-react";
+import { Button } from "@mui/material";
 function PageNotFound() {
   return (
     <div className="min-h-screen w-full max-w-8xl mx-auto flex flex-col justify-center items-center p-5 gap-5">
@@ -19,7 +19,9 @@ function PageNotFound() {
           Whoops! That page doesn't exist
         </p>
         <Link to="/">
-          <Button type="button">Back to the Home Page</Button>
+          <Button ariant="text" type="button">
+            Back to the Home Page
+          </Button>
         </Link>
       </div>
     </div>

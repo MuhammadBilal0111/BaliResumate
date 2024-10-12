@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { FloatingLabel, Button, Spinner, Alert } from "flowbite-react";
+import { Alert, TextField, Button, CircularProgress } from "@mui/material";
 import { MdEmail } from "react-icons/md";
 import { GoEyeClosed, GoEye } from "react-icons/go";
 import { FaGithub } from "react-icons/fa";
@@ -60,23 +60,25 @@ function SignIn() {
         </p>
         <form className="flex flex-col gap-2 my-2" onSubmit={handleSubmit}>
           <div className="relative">
-            <FloatingLabel
+            <TextField
               type="email"
-              variant="filled"
+              variant="standard"
               label="Your Email"
               id="email"
               onChange={handleChange}
+              className="w-full text-white"
             />
             <MdEmail className="absolute top-1/2 -translate-y-1/2 right-4 z-0 text-xl" />
           </div>
           <div className="relative">
-            <FloatingLabel
+            <TextField
               type="password"
-              variant="filled"
+              variant="standard"
               label="Your Password"
               id="password"
               ref={showPasswordElement}
               onChange={handleChange}
+              className="w-full text-white"
             />
             {showPassword ? (
               <GoEye
@@ -99,14 +101,10 @@ function SignIn() {
           <h1 className="text-blue-500 font-lg hover:underline text-right font-semibold">
             <Link to="/forget-password">Forget password</Link>
           </h1>
-          <Button type="submit" color="blue" className="w-full">
-            {loading ? <Spinner size="sm" /> : "Login"}
+          <Button variant="text" type="submit" color="blue" className="w-full">
+            {loading ? <CircularProgress size="30px" /> : "Login"}
           </Button>
-          {error && (
-            <Alert color="failure" className="mt-2">
-              {error}
-            </Alert>
-          )}
+          {error && <Alert severity="error">{error}</Alert>}
         </form>
         <div className="grid grid-cols-3 items-center text-gray-900">
           <hr className="border-gray-500" />

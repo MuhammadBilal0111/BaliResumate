@@ -4,12 +4,14 @@ import { TextField, CircularProgress } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
 import { createNewResume } from "../../services/GlobalApi";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function AddResume() {
   const [openModal, setOpenModal] = useState(false);
   const [resumeTitle, setResumeTitle] = useState(null);
   const [loading, setLoading] = useState(false);
   const { currentUser } = useSelector((state) => state.user || {});
+  const navigate = useNavigate();
 
   const onCreateResume = () => {
     setLoading(true);
@@ -23,6 +25,7 @@ function AddResume() {
     createNewResume(data)
       .then((res) => {
         setLoading(false);
+        navigate(`/dashboard/resume/:${res.data.userResumeinfo.resumeId}/edit`);
         console.log(res);
       })
       .catch((err) => {

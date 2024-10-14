@@ -6,12 +6,12 @@ const authRouter = require("./Routes/authRoutes");
 const CustomError = require("./Utils/customErrors");
 const app = express();
 
+// middlewares
 app.use(express.json());
-// app.use(cookieParser());
+app.use(cookieParser());
 app.use(morgan("dev"));
 app.use("/api/auth", authRouter);
 app.use("/api/user-resume", userResumeRouter);
-// client s title, uuid or email yege
 
 // global error handler middleware
 app.use((err, req, res, next) => {

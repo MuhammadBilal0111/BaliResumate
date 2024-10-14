@@ -13,6 +13,6 @@ export const createNewResume = (data) => {
   return api.post("/user-resume/create-resume", data);
 };
 
-export const getUserResumes = () => {
-  return api.get("");
+export const getUserResumes = (userEmail) => {
+  return api.get(`/user-resume/${userEmail}`);
 };

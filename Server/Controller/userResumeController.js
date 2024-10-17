@@ -15,6 +15,7 @@ exports.createResume = asyncErrorHandler(async (req, res, next) => {
     userResumeinfo,
   });
 });
+
 // creating get User resume routes
 exports.getUserResumes = asyncErrorHandler(async (req, res, next) => {
   const email = req.params.userEmail;

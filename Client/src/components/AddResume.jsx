@@ -25,7 +25,7 @@ function AddResume() {
     createNewResume(data)
       .then((res) => {
         setLoading(false);
-        navigate(`/dashboard/resume/:${res.data.userResumeinfo.resumeId}/edit`);
+        navigate(`/dashboard/resume/${res.data.userResumeinfo._id}/edit`);
         console.log(res);
       })
       .catch((err) => {

@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Header from "./components/Header";
 import PageNotFound from "./pages/PageNotFound";
-import EditResume from "./pages/EditResume";
+import EditResume from "./pages/resume/EditResume";
 
 function App() {
   return (

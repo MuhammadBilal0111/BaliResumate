@@ -1,5 +1,6 @@
 import userSlice from "./userSlice";
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import resumeInfoSlice from "./resumeInfoSlice";
 import storage from "redux-persist/lib/storage";
 import persistReducer from "redux-persist/es/persistReducer";
 import persistStore from "redux-persist/es/persistStore";
@@ -10,6 +11,7 @@ import persistStore from "redux-persist/es/persistStore";
 
 const rootReducer = combineReducers({
   user: userSlice.reducer,
+  resume: resumeInfoSlice.reducer,
 });
 
 const persistConfig = {

@@ -4,7 +4,7 @@ import { PiNotebookBold } from "react-icons/pi";
 
 function ResumeItem({ resume }) {
   return (
-    <Link to={`/dashboard/resume/:${resume.resumeId}/edit`}>
+    <Link to={`/dashboard/resume/${resume._id}/edit`}>
       <div className="flex items-center justify-center bg-secondary h-[280px] border border-primary rounded-lg hover:scale-105 transition-all hover:shadow-md hover:shadow-primary">
         <PiNotebookBold className="text-3xl" />
       </div>

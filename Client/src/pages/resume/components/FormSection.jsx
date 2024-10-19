@@ -4,6 +4,8 @@ import { Button } from "@mui/material";
 import { TbColorFilter } from "react-icons/tb";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import PersonalDetails from "./forms/PersonalDetails";
+import EmploymentHistory from "./forms/EmploymentHistory";
+import Education from "./forms/Education";
 
 function FormSection() {
   const [activeFormIndex, setActiveFormIndex] = useState(0);
@@ -47,6 +49,11 @@ function FormSection() {
 
       {/* Personal Summary */}
       {activeFormIndex === 1 && <PersonalSummary />}
+
+      {/* Education Summary */}
+      {activeFormIndex === 2 && <Education />}
+      {/* Employee Summary */}
+      {activeFormIndex === 3 && <EmploymentHistory />}
     </div>
   );
 }

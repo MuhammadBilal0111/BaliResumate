@@ -10,14 +10,17 @@ function PersonalSummary() {
   const [tempDetails, setTempDetails] = useState("");
   const [headingText, setHeadingText] = useState("Professional Details");
 
-  const handleProfessionalDetails = (html) => {
-    if (html.length <= 600) {
-      setProfessionalDetails(html);
-      let tempElement = document.createElement("div");
-      tempElement.innerHTML = html;
-      setTempDetails(tempElement.textContent || tempElement.innerText || "");
+  const handleProfessionalDetails = (content, delta, source, editor) => {
+    // Extract the plain text from the editor and trim any whitespace
+    const textContent = editor?.getText()?.trim();
+    setTempDetails(textContent);
+
+    // Only update professionalDetails if the text length is strictly less than 600
+    if (textContent.length < 600) {
+      setProfessionalDetails(content);
     }
   };
+
   const handleTextChange = (e) => {
     setHeadingText(e.target.value);
   };
@@ -38,7 +41,7 @@ function PersonalSummary() {
         theme="snow"
         placeholder="Curious science teacher with 8+ years of experience and a track record of..."
         value={professionalDetails}
-        className="h-72 mb-14 text-2xl font-gray-600 dark:text-gray-500"
+        className="h-72 mb-14 text-2xl font-gray-600 dark:text-gray-500 text-gray-900"
         onChange={handleProfessionalDetails}
       />
       <div className="flex justify-between text-sm text-gray-500 font-semibold">
@@ -48,8 +51,10 @@ function PersonalSummary() {
         <span>{tempDetails.length}/600</span>
       </div>
 
-      {tempDetails.length > 600 && (
-        <Alert severity="error">Text Limit Exceeded</Alert>
+      {tempDetails.length >= 600 && (
+        <Alert severity="error" className="mt-2">
+          Text Limit Exceeded
+        </Alert>
       )}
     </div>
   );

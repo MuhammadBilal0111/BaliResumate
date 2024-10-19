@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Tooltip } from "@mui/material";
 import { TbPencil } from "react-icons/tb";
+import IconButton from "@mui/material/IconButton";
 
 function EditableHeading({ headingText, onTextChange }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -29,11 +30,13 @@ function EditableHeading({ headingText, onTextChange }) {
           <h1 className="font-sans text-2xl font-semibold truncate text-gray-900 dark:text-gray-200">
             {headingText}
           </h1>
-          <Tooltip title="Add" placement="top">
-            <TbPencil
-              className="text-2xl cursor-pointer hover:text-blue-700"
-              onClick={handleEditClick}
-            />
+          <Tooltip title="Rename" placement="top">
+            <IconButton>
+              <TbPencil
+                className="text-2xl cursor-pointer hover:text-blue-700"
+                onClick={handleEditClick}
+              />
+            </IconButton>
           </Tooltip>
         </div>
       )}

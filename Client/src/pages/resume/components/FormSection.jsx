@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import PersonalSummary from "./forms/PersonalSummary";
 import { Button } from "@mui/material";
 import { TbColorFilter } from "react-icons/tb";
-import { GrLinkNext } from "react-icons/gr";
+import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
+import PersonalDetails from "./forms/PersonalDetails";
 
 function FormSection() {
-  const { activeFormIndex, setActiveFormIndex } = useState(0);
+  const [activeFormIndex, setActiveFormIndex] = useState(0);
   return (
-    <div className="mt-5">
+    <div className="px-5 py-10">
       <div className="flex justify-between items-center">
+        {/* Theme button */}
         <Button
           variant="outlined"
           size="sm"
@@ -17,20 +19,34 @@ function FormSection() {
           <TbColorFilter />
           Theme
         </Button>
-        <Button
-          variant="outlined"
-          size="sm"
-          className="flex gap-2 items-center"
-        >
-          Next
-          <GrLinkNext />
-        </Button>
+        <div className="flex gap-2">
+          {/* Previous button */}
+          {activeFormIndex > 0 && (
+            <Button
+              variant="contained"
+              size="sm"
+              onClick={() => setActiveFormIndex(activeFormIndex - 1)}
+            >
+              <GrLinkPrevious />
+            </Button>
+          )}
+          {/* Next button */}
+          <Button
+            variant="outlined"
+            size="sm"
+            className="flex gap-2 items-center"
+            onClick={() => setActiveFormIndex(activeFormIndex + 1)}
+          >
+            Next
+            <GrLinkNext />
+          </Button>
+        </div>
       </div>
-
-      {/* <PersonalDetails /> */}
+      {/* Personal Details */}
+      {activeFormIndex === 0 && <PersonalDetails />}
 
       {/* Personal Summary */}
-      <PersonalSummary />
+      {activeFormIndex === 1 && <PersonalSummary />}
     </div>
   );
 }

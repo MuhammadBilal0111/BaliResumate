@@ -25,7 +25,7 @@ function PersonalSummary() {
     setHeadingText(e.target.value);
   };
   return (
-    <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10">
+    <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10 border-[#ff6666]">
       <div className="flex gap-2 items-center ">
         <EditableHeading
           headingText={headingText}

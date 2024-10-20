@@ -33,27 +33,28 @@ function FormSection() {
             </Button>
           )}
           {/* Next button */}
-          <Button
-            variant="outlined"
-            size="sm"
-            className="flex gap-2 items-center"
-            onClick={() => setActiveFormIndex(activeFormIndex + 1)}
-          >
-            Next
-            <GrLinkNext />
-          </Button>
+          {activeFormIndex < 3 && (
+            <Button
+              variant="outlined"
+              size="sm"
+              className="flex gap-2 items-center"
+              onClick={() => setActiveFormIndex(activeFormIndex + 1)}
+            >
+              Next
+              <GrLinkNext />
+            </Button>
+          )}
         </div>
       </div>
       {/* Personal Details */}
       {activeFormIndex === 0 && <PersonalDetails />}
-
       {/* Personal Summary */}
       {activeFormIndex === 1 && <PersonalSummary />}
-
       {/* Education Summary */}
       {activeFormIndex === 2 && <Education />}
       {/* Employee Summary */}
       {activeFormIndex === 3 && <EmploymentHistory />}
+      {/* Projects */}
     </div>
   );
 }

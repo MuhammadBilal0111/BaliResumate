@@ -11,21 +11,23 @@ function EmploymentHistory() {
   const handleTextChange = (e) => {
     setHeadingText(e.target.value);
   };
-
+  // handling new Accordion
   const handleAddAccordian = () => {
     const newId =
       accordions.length > 0 ? accordions[accordions.length - 1].id + 1 : 1;
     const newAccordian = {
       id: newId,
       field_title: "(Not Specified)",
+      content: "",
     };
     setAccordions([...accordions, newAccordian]);
   };
+  // handling delete Accordion
   const handleDeleteAccordian = (id) => {
     setItems(items.filter((item) => item.id !== id));
   };
+  // handle change of the text input
   const handleChange = (e, id) => {
-    console.log(e.target.id);
     setAccordions(
       accordions.map((accordion) =>
         accordion.id === id
@@ -34,6 +36,7 @@ function EmploymentHistory() {
       )
     );
   };
+  console.log(accordions);
   return (
     <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10 border-[#ff6666]">
       <div>

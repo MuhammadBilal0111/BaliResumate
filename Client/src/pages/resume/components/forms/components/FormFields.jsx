@@ -4,6 +4,8 @@ import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 
+// used to render the textfields
+
 function FormFields({ id, label, type, placeholder, tooltipContent }) {
   console.log(label);
   return (

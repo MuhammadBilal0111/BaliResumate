@@ -11,7 +11,7 @@ function EmploymentHistory() {
   const handleTextChange = (e) => {
     setHeadingText(e.target.value);
   };
-
+  // handle add Accordion
   const handleAddAccordian = () => {
     const newId =
       accordions.length > 0 ? accordions[accordions.length - 1].id + 1 : 1;
@@ -21,10 +21,12 @@ function EmploymentHistory() {
     };
     setAccordions([...accordions, newAccordian]);
   };
+  // handle Delete Accordion
   const handleDeleteAccordian = (id) => {
     setItems(items.filter((item) => item.id !== id));
   };
   const handleChange = (e, id) => {
+    console.log(e.target.id);
     setAccordions(
       accordions.map((accordion) =>
         accordion.id === id

@@ -1,12 +1,12 @@
 export const formFields = [
   {
-    id: "job_title",
+    id: "jobTitle",
     label: "Job Title",
     type: "text",
     placeholder: "Enter Job Title",
   },
-  { id: "firstname", type: "text", label: "First Name" },
-  { id: "lastname", type: "text", label: "Last Name" },
+  { id: "firstName", type: "text", label: "First Name" },
+  { id: "lastName", type: "text", label: "Last Name" },
   { id: "email", type: "text", label: "Email" },
   { id: "phone", type: "phone", label: "Phone" },
   { id: "address", type: "text", label: "Addess" },
@@ -33,7 +33,7 @@ export const additionalFormFields = [
     label: "Place Of Birth",
   },
   {
-    id: "date_of_birth",
+    id: "dateOfBirth",
     type: "date",
     label: "Date of birth",
     tooltipContent:

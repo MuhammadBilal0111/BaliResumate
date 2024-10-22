@@ -11,3 +11,10 @@
   color: #888; /* Change this to your desired color */
   font-style: italic; /* Optional: make it italic */
 }
+/* styling for anchor tag in whole CV */
+a {
+  color: rgb(75, 49, 221);
+}
+a:hover {
+  text-decoration: underline;
+}

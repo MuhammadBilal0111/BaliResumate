@@ -11,7 +11,9 @@ function PersonalPreviewSection() {
         {resumeInfo.firstName} {resumeInfo.lastName}
       </h1>
       <h1 className="text-sm text-center font-medium">{resumeInfo.jobTitle}</h1>
-      <h1 className="text-center font-normal text-xs">{resumeInfo.address}</h1>
+      <h1 className="text-center font-normal text-xs">
+        {resumeInfo.address} {resumeInfo.postalCode}
+      </h1>
       <div className="flex justify-between items-center mt-4">
         <h2
           className="text-xs font-normal"

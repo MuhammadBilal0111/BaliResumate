@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 function Summary() {
   const { resumeInfo } = useSelector((state) => state.resume);
+  
   return (
-    <div>
-      <p className="text-xs">{resumeInfo.summary}</p>
-    </div>
+    <div
+      className="text-xs"
+      dangerouslySetInnerHTML={{ __html: resumeInfo?.summary }}
+    ></div>
   );
 }
 

@@ -6,8 +6,14 @@ import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 
 // used to render the textfields
 
-function FormFields({ id, label, type, placeholder, tooltipContent }) {
-  console.log(label);
+function FormFields({
+  id,
+  label,
+  type,
+  placeholder,
+  tooltipContent,
+  handlePersonalDetailsInfo,
+}) {
   return (
     <div>
       <div className="flex gap-3 items-center">
@@ -28,6 +34,7 @@ function FormFields({ id, label, type, placeholder, tooltipContent }) {
         label={placeholder}
         type={type}
         variant="filled"
+        onChange={handlePersonalDetailsInfo}
       />
     </div>
   );

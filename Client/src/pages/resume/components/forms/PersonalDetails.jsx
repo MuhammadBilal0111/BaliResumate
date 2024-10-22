@@ -3,11 +3,20 @@ import "react-quill/dist/quill.snow.css";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import EditableHeading from "./components/EditableHeading";
 import FormFields from "./components/FormFields";
+import { useDispatch, useSelector } from "react-redux";
 import { formFields, additionalFormFields } from "../../../../utils/constants";
+import { editResumeInfo } from "../../../../store/resumeInfoSlice";
 
 function PersonalDetails() {
   const [headingText, setHeadingText] = useState("Personal Details");
   const [showDetails, setShowDetails] = useState(false);
+  const { resumeInfo } = useSelector((state) => state.resume);
+  const dispatch = useDispatch();
+
+  // handling personal details props
+  const handlePersonalDetailsInfo = (e) => {
+    dispatch(editResumeInfo({ ...resumeInfo, [e.target.id]: e.target.value }));
+  };
   const handleShowDetails = () => {
     showDetails ? setShowDetails(false) : setShowDetails(true);
   };
@@ -24,12 +33,20 @@ function PersonalDetails() {
         />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4">
           {formFields.map((field) => (
-            <FormFields key={field.id} {...field} />
+            <FormFields
+              key={field.id}
+              {...field}
+              handlePersonalDetailsInfo={handlePersonalDetailsInfo}
+            />
           ))}
           {showDetails && (
             <>
               {additionalFormFields.map((field) => (
-                <FormFields key={field.id} {...field} />
+                <FormFields
+                  key={field.id}
+                  {...field}
+                  handlePersonalDetailsInfo={handlePersonalDetailsInfo}
+                />
               ))}
             </>
           )}

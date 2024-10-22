@@ -7,10 +7,10 @@ const resumeInfoSlice = createSlice({
   name: "resume",
   initialState,
   reducers: {
-    resumeInfo: (state, action) => {
+    editResumeInfo: (state, action) => {
       state.resumeInfo = action.payload;
     },
   },
 });
-export const { resumeInfo } = resumeInfoSlice.actions;
+export const { editResumeInfo } = resumeInfoSlice.actions;
 export default resumeInfoSlice;

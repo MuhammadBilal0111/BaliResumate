@@ -4,12 +4,22 @@ import { useState } from "react";
 import ReactQuill from "react-quill";
 import Alert from "@mui/material/Alert";
 import "react-quill/dist/quill.snow.css";
+import { editResumeInfo } from "../../../../store/resumeInfoSlice";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 function PersonalSummary() {
-  const [professionalDetails, setProfessionalDetails] = useState("");
+  // const [professionalDetails, setProfessionalDetails] = useState("");
   const [tempDetails, setTempDetails] = useState("");
   const [headingText, setHeadingText] = useState("Professional Details");
+  const { resumeInfo } = useSelector((state) => state.resume);
 
+  const dispatch = useDispatch();
+  // event handler function for changing summary
+  // const handleChangeSummary = (e) => {
+  //   console.log("id", e.target.id, "value", e.target.value);
+  //   dispatch(editResumeInfo({ ...resumeInfo, [e.target.id]: e.target.value }));
+  // };
   const handleProfessionalDetails = (content, delta, source, editor) => {
     // Extract the plain text from the editor and trim any whitespace
     const textContent = editor?.getText()?.trim();
@@ -17,7 +27,8 @@ function PersonalSummary() {
 
     // Only update professionalDetails if the text length is strictly less than 600
     if (textContent.length < 600) {
-      setProfessionalDetails(content);
+      // setProfessionalDetails(content);
+      dispatch(editResumeInfo({ ...resumeInfo, summary: content }));
     }
   };
 
@@ -40,7 +51,7 @@ function PersonalSummary() {
       <ReactQuill
         theme="snow"
         placeholder="Curious science teacher with 8+ years of experience and a track record of..."
-        value={professionalDetails}
+        value={resumeInfo?.summary}
         className="h-72 mb-14 text-2xl font-gray-600 dark:text-gray-500 text-gray-900"
         onChange={handleProfessionalDetails}
       />

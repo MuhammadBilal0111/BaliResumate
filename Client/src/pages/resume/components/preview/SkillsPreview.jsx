@@ -8,21 +8,21 @@ function SkillsPreview() {
       <h1
         className="font-bold border-b-2 mb-2"
         style={{
-          color: resumeInfo.themeColor,
-          borderColor: resumeInfo.themeColor,
+          color: resumeInfo?.themeColor,
+          borderColor: resumeInfo?.themeColor,
         }}
       >
         Technicals Skills
       </h1>
       {resumeInfo.skills.map((skill, index) => (
         <div key={index} className="flex justify-between items-center">
-          <h2 className="text-xs">{skill.name}</h2>
+          <h2 className="text-xs">{skill?.name}</h2>
           <div className="h-2 bg-gray-200 w-[160px]">
             <div
               className="h-2"
               style={{
                 backgroundColor: resumeInfo.themeColor,
-                width: skill.rating + "%",
+                width: skill?.rating + "%",
               }}
             ></div>
           </div>

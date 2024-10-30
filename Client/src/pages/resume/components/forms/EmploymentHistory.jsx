@@ -21,12 +21,12 @@ function EmploymentHistory() {
     };
     setAccordions([...accordions, newAccordian]);
   };
+  console.log(accordions);
   // handle Delete Accordion
   const handleDeleteAccordian = (id) => {
     setItems(items.filter((item) => item.id !== id));
   };
   const handleChange = (e, id) => {
-    console.log(e.target.id);
     setAccordions(
       accordions.map((accordion) =>
         accordion.id === id

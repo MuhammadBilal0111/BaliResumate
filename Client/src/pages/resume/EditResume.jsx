@@ -12,7 +12,7 @@ function EditResume() {
   useEffect(() => {
     dispatch(editResumeInfo(dummy));
   }, [resumeId]);
-  const { resumeInfo } = useSelector((state) => state?.resume);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-10 p-2">
       {/* Form Sections */}

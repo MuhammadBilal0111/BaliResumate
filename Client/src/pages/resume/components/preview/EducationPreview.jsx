@@ -14,19 +14,25 @@ function EducationPreview() {
       >
         Education
       </h1>
-      {resumeInfo.education.map((education, index) => (
+      {resumeInfo?.education.map((education, index) => (
         <div key={index} className="flex flex-col gap-2 my-3">
           <div>
-            <h2 className="font-bold text-sm">{education.universityName}</h2>
+            <h2 className="font-bold text-sm">
+              {education?.title}, {education?.city}.
+            </h2>
+            {/*title is the university name or company name*/}
             <h2 className="text-xs flex justify-between items-center">
-              {education.degree}, {education.major}
+              {education?.degree}
               <span>
-                {education.startDate}-
-                {education.currentlyWorking ? "Present" : education.endDate}
+                {education?.start_year}-
+                {education?.currentlyWorking ? "Present" : education?.end_year}
               </span>
             </h2>
           </div>
-          <p className="text-xs">{education.description}</p>
+          <div
+            className="text-xs"
+            dangerouslySetInnerHTML={{ __html: education?.description }}
+          ></div>
         </div>
       ))}
     </div>

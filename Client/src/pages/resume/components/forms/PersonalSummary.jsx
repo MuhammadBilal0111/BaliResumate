@@ -5,15 +5,13 @@ import ReactQuill from "react-quill";
 import Alert from "@mui/material/Alert";
 import "react-quill/dist/quill.snow.css";
 import { editResumeInfo } from "../../../../store/resumeInfoSlice";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 
 function PersonalSummary() {
   // const [professionalDetails, setProfessionalDetails] = useState("");
   const [tempDetails, setTempDetails] = useState("");
   const [headingText, setHeadingText] = useState("Professional Details");
   const { resumeInfo } = useSelector((state) => state.resume);
-
   const dispatch = useDispatch();
   // event handler function for changing summary
   // const handleChangeSummary = (e) => {

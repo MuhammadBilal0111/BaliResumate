@@ -46,22 +46,21 @@ export default {
   ],
   education: [
     {
-      id: 1,
-      universityName: "Western Illinois University",
-      startDate: "Aug 2018",
-      endDate: "Dec:2019",
-      degree: "Master",
-      major: "Computer Science",
+      title: "Western Illinois University",
+      start_year: "2018",
+      end_year: "2019",
+      city: "Karachi",
+      degree: "Bachelor of Software Engineering",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud",
     },
     {
       id: 2,
-      universityName: "Western Illinois University",
-      startDate: "Aug 2018",
-      endDate: "Dec:2019",
-      degree: "Master",
-      major: "Computer Science",
+      title: "Western Illinois University",
+      start_year: "2018",
+      end_year: "2019",
+      city: "Karachi",
+      degree: "Bachelor of Software Engineering",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud",
     },

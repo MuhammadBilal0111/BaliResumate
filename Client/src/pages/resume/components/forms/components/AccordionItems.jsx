@@ -19,18 +19,16 @@ function AccordianItems({
   onHandleChange,
 }) {
   const [tempDetails, setTempDetails] = useState("");
-
-  const handleAccordiontDetails = (content, delta, source, editor) => {
+  const handleAccordiontDetails = (description, delta, source, editor) => {
     // Extract the plain text from the editor and trim any whitespace
-    console.log("content", content);
     const textContent = editor?.getText()?.trim();
     setTempDetails(textContent);
 
     // Only update professionalDetails if the text length is strictly less than 600
-    if (textContent.length < 700) {
+    if (textContent.length < 200) {
       onHandleChange(
-        { target: { id: "content", value: content } },
-        accordionItem.id
+        { target: { id: "description", value: description } },
+        accordionItem?.id
       );
     }
   };
@@ -43,7 +41,7 @@ function AccordianItems({
         className="hover:text-blue-700 font-semibold dark:bg-black"
         onChange={(e) => onHandleChange(e, accordionItem.id)}
       >
-        {accordionItem.field_title}
+        {accordionItem?.title}
       </AccordionSummary>
       <AccordionDetails>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4 mb-2">
@@ -55,10 +53,10 @@ function AccordianItems({
               {labels.title}
             </label>
             <TextField
-              id="field_title"
+              id="title"
               variant="outlined"
               type="text"
-              value={accordionItem.title}
+              value={accordionItem?.title}
               onChange={(e) => onHandleChange(e, accordionItem.id)}
               className="w-full"
             />
@@ -72,6 +70,7 @@ function AccordianItems({
               id="degree"
               type="text"
               onChange={(e) => onHandleChange(e, accordionItem.id)}
+              value={accordionItem?.degree}
               className="w-full"
             ></TextField>
           </div>
@@ -93,6 +92,7 @@ function AccordianItems({
                 type="number"
                 placeholder="YYYY"
                 className="flex-1"
+                value={accordionItem?.start_year}
                 onChange={(e) => onHandleChange(e, accordionItem.id)}
               />
               <TextField
@@ -101,6 +101,7 @@ function AccordianItems({
                 type="number"
                 placeholder="YYYY"
                 className="flex-1"
+                value={accordionItem?.end_year}
                 onChange={(e) => onHandleChange(e, accordionItem.id)}
               />
             </div>
@@ -114,6 +115,7 @@ function AccordianItems({
               id="city"
               type="text"
               className="w-full"
+              value={accordionItem?.city}
               onChange={(e) => onHandleChange(e, accordionItem.id)}
             ></TextField>
           </div>
@@ -122,7 +124,7 @@ function AccordianItems({
           <ReactQuill
             theme="snow"
             placeholder={placeholder.TextContent}
-            value={accordionItem.content}
+            value={accordionItem?.description}
             onChange={handleAccordiontDetails}
             className="h-72 mb-14 text-2xl font-gray-600"
           />

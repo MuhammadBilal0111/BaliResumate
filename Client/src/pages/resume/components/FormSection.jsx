@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 import { TbColorFilter } from "react-icons/tb";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import PersonalDetails from "./forms/PersonalDetails";
-import EmploymentHistory from "./forms/EmploymentHistory";
+import ExperienceHistory from "./forms/ExperienceHistory";
 import Education from "./forms/Education";
 
 function FormSection() {
@@ -53,7 +53,7 @@ function FormSection() {
       {/* Education Summary */}
       {activeFormIndex === 2 && <Education />}
       {/* Employee Summary */}
-      {activeFormIndex === 3 && <EmploymentHistory />}
+      {activeFormIndex === 3 && <ExperienceHistory />}
       {/* Projects */}
     </div>
   );

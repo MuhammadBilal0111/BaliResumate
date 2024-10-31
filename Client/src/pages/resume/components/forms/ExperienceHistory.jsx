@@ -2,38 +2,54 @@ import React, { useState } from "react";
 import EditableHeading from "./components/EditableHeading";
 import { FaPlus } from "react-icons/fa6";
 import AccordionItems from "./components/AccordionItems";
+import { useSelector, useDispatch } from "react-redux";
+import { editResumeInfo } from "../../../../store/resumeInfoSlice";
 
-function EmploymentHistory() {
+function ExperienceHistory() {
+  const { resumeInfo } = useSelector((state) => state.resume);
+  const experienceData = resumeInfo?.experience || [];
   const [headingText, setHeadingText] = useState("Employment History");
-  const [accordions, setAccordions] = useState([
-    { id: 1, field_title: "(Not Specified)", content: "" },
-  ]);
+  const dispatch = useDispatch();
+
+  // const [accordions, setAccordions] = useState([
+  //   { id: 1, field_title: "(Not Specified)", content: "" },
+  // ]);
   const handleTextChange = (e) => {
     setHeadingText(e.target.value);
   };
   // handle add Accordion
   const handleAddAccordian = () => {
     const newId =
-      accordions.length > 0 ? accordions[accordions.length - 1].id + 1 : 1;
+      experienceData?.length > 0
+        ? experienceData[experienceData.length - 1].id + 1
+        : 1;
     const newAccordian = {
       id: newId,
-      field_title: "(Not Specified)",
+      title: "(Not Specified)",
+      description: "",
     };
-    setAccordions([...accordions, newAccordian]);
+    //setAccordions([...accordions, newAccordian]);
+    dispatch(
+      editResumeInfo({
+        ...resumeInfo,
+        experience: [...experienceData, newAccordian],
+      })
+    );
   };
-  console.log(accordions);
+
   // handle Delete Accordion
   const handleDeleteAccordian = (id) => {
-    setItems(items.filter((item) => item.id !== id));
+    // setItems(items.filter((item) => item.id !== id));
+    const updatedAccordions = experienceData?.filter((item) => item.id !== id);
+    dispatch(editResumeInfo({ ...resumeInfo, experience: updatedAccordions })); // updating the experience state after filtering the object
   };
   const handleChange = (e, id) => {
-    setAccordions(
-      accordions.map((accordion) =>
-        accordion.id === id
-          ? { ...accordion, [e.target.id]: e.target.value }
-          : accordion
-      )
+    const updatedAccordian = experienceData.map((accordion) =>
+      accordion.id === id
+        ? { ...accordion, [e.target.id]: e.target.value }
+        : accordion
     );
+    dispatch(editResumeInfo({ ...resumeInfo, experience: updatedAccordian }));
   };
   return (
     <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10 border-[#ff6666]">
@@ -47,11 +63,11 @@ function EmploymentHistory() {
           note your achievements, if possible - use numbers/facts (Achieved X,
           measured by Y, by doing Z).
         </p>
-        {accordions &&
-          accordions.map((accordion) => (
+        {experienceData &&
+          experienceData.map((accordionItem) => (
             <AccordionItems
-              key={accordion.id}
-              accordionItem={accordion}
+              key={accordionItem?.id}
+              accordionItem={accordionItem}
               onHandleChange={handleChange}
               onDeleteItem={handleDeleteAccordian}
               labels={{
@@ -78,4 +94,4 @@ function EmploymentHistory() {
   );
 }
 
-export default EmploymentHistory;
+export default ExperienceHistory;

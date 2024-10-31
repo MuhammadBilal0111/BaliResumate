@@ -13,19 +13,24 @@ function ProfessionalExperience() {
       >
         Professional Exerience
       </h2>
-      {resumeInfo?.experience.map((experience, index) => (
+      {resumeInfo?.experience?.map((experience, index) => (
         <div key={index} className="flex flex-col gap-2 my-3">
           <div>
             <h2 className="font-bold text-sm">{experience?.title}</h2>
             <h2 className="text-xs flex justify-between items-center">
               {experience?.companyName}, {experience?.city},{experience?.state}
               <span>
-                {experience?.startDate}-
-                {experience?.currentlyWorking ? "Present" : experience?.endDate}
+                {experience?.start_year}-
+                {experience?.currentlyWorking
+                  ? "Present"
+                  : experience?.end_year}
               </span>
             </h2>
           </div>
-          <p className="text-xs">{experience?.workSummary}</p>
+          <div
+            className="text-xs"
+            dangerouslySetInnerHTML={{ __html: experience?.description }}
+          ></div>
         </div>
       ))}
     </div>

@@ -15,10 +15,10 @@ export default {
       companyName: "Amazon",
       city: "New York",
       state: "NY",
-      startDate: "Jan 2021",
-      endDate: "",
+      start_year: "2021",
+      end_year: "2019",
       currentlyWorking: true,
-      workSummary:
+      description:
         " Designed, developed, and maintained full-stack applications using React and Node.js.\n" +
         "• Implemented responsive user interfaces with React, ensuring seamless user experiences across\n" +
         "various devices and browsers.\n" +
@@ -32,10 +32,10 @@ export default {
       companyName: "Google",
       city: "Charlotte",
       state: "NC",
-      startDate: "May 2019",
-      endDate: "Jan 2021",
+      start_year: "2021",
+      end_year: "2019",
       currentlyWorking: false,
-      workSummary:
+      description:
         " Designed, developed, and maintained full-stack applications using React and Node.js." +
         "• Implemented responsive user interfaces with React, ensuring seamless user experiences across" +
         "various devices and browsers." +
@@ -50,6 +50,7 @@ export default {
       start_year: "2018",
       end_year: "2019",
       city: "Karachi",
+      currentlyWorking: false,
       degree: "Bachelor of Software Engineering",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud",

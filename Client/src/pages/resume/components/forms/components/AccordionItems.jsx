@@ -25,7 +25,7 @@ function AccordianItems({
     setTempDetails(textContent);
 
     // Only update professionalDetails if the text length is strictly less than 600
-    if (textContent.length < 200) {
+    if (textContent.length < 700) {
       onHandleChange(
         { target: { id: "description", value: description } },
         accordionItem?.id
@@ -67,10 +67,10 @@ function AccordianItems({
             </label>
             <TextField
               variant="outlined"
-              id="degree"
+              id={accordionItem?.degree ? "degree" : "companyName"}
               type="text"
               onChange={(e) => onHandleChange(e, accordionItem.id)}
-              value={accordionItem?.degree}
+              value={accordionItem?.degree || accordionItem?.companyName}
               className="w-full"
             ></TextField>
           </div>
@@ -81,7 +81,7 @@ function AccordianItems({
               </label>
               <Tooltip title="If you do not want to show the date. Leave it blank">
                 <IconButton>
-                  <HiOutlineQuestionMarkCircle className="text-xl text-blue-700 cursor-pointer" />
+                  <HiOutlineQuestionMarkCircle className="text-md text-blue-700 cursor-pointer" />
                 </IconButton>
               </Tooltip>
             </div>
@@ -123,7 +123,7 @@ function AccordianItems({
         <div className="">
           <ReactQuill
             theme="snow"
-            placeholder={placeholder.TextContent}
+            placeholder={placeholder?.TextContent}
             value={accordionItem?.description}
             onChange={handleAccordiontDetails}
             className="h-72 mb-14 text-2xl font-gray-600"
@@ -132,7 +132,7 @@ function AccordianItems({
             <p>
               Recruiter tip: write 200+ characters to increase interview chances
             </p>
-            <span>{tempDetails.length}/200+</span>
+            <span>{tempDetails?.length}/200+</span>
           </div>
         </div>
       </AccordionDetails>

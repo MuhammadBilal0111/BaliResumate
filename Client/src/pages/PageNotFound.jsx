@@ -9,6 +9,7 @@ function PageNotFound() {
           className="RV8RoaI_SlEMC5CEQ3ms _9OKVeTXzfSwD_NYO6_G w-full"
           src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/404/404-computer.svg"
           alt="404 Not Found"
+          loading="lazy"
         ></img>
       </div>
       <div className="flex flex-col gap-4 items-center">

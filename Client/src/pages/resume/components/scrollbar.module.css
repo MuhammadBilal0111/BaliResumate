@@ -1,0 +1,16 @@
+.scrollbar-form {
+  overflow-y: auto;
+  height: 100vh;
+}
+.scrollbar-form::-webkit-scrollbar {
+  width: 1rem;
+}
+.scrollbar-form::-webkit-scrollbar-track {
+  background-color: rgb(24, 24, 28);
+}
+.scrollbar-form::-webkit-scrollbar-thumb {
+  background: #696969;
+  border: 5px solid transparent;
+  border-radius: 9px;
+  background-clip: content-box;
+}

@@ -6,11 +6,12 @@ import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import PersonalDetails from "./forms/PersonalDetails";
 import ExperienceHistory from "./forms/ExperienceHistory";
 import Education from "./forms/Education";
+import styles from "./scrollbar.module.css";
 
 function FormSection() {
   const [activeFormIndex, setActiveFormIndex] = useState(0);
   return (
-    <div className="px-5 py-10">
+    <div className={`px-5 py-10 ${styles["scrollbar-form"]}`}>
       <div className="flex justify-between items-center">
         {/* Theme button */}
         <Button
@@ -33,7 +34,7 @@ function FormSection() {
             </Button>
           )}
           {/* Next button */}
-          {activeFormIndex < 3 && (
+          {activeFormIndex < 4 && (
             <Button
               variant="outlined"
               size="sm"
@@ -55,6 +56,7 @@ function FormSection() {
       {/* Employee Summary */}
       {activeFormIndex === 3 && <ExperienceHistory />}
       {/* Projects */}
+      {activeFormIndex === 4 && <ExperienceHistory />}
     </div>
   );
 }

@@ -54,7 +54,7 @@ function AccordianItems({
             </label>
             <TextField
               id="title"
-              variant="outlined"
+              variant="filled"
               type="text"
               value={accordionItem?.title}
               onChange={(e) => onHandleChange(e, accordionItem.id)}
@@ -66,7 +66,7 @@ function AccordianItems({
               {labels.organization}
             </label>
             <TextField
-              variant="outlined"
+              variant="filled"
               id={accordionItem?.degree ? "degree" : "companyName"}
               type="text"
               onChange={(e) => onHandleChange(e, accordionItem.id)}
@@ -87,7 +87,7 @@ function AccordianItems({
             </div>
             <div className="flex gap-4 justify-between items-center">
               <TextField
-                variant="outlined"
+                variant="filled"
                 id="start_year"
                 type="number"
                 placeholder="YYYY"
@@ -96,7 +96,7 @@ function AccordianItems({
                 onChange={(e) => onHandleChange(e, accordionItem.id)}
               />
               <TextField
-                variant="outlined"
+                variant="filled"
                 id="end_year"
                 type="number"
                 placeholder="YYYY"
@@ -111,7 +111,7 @@ function AccordianItems({
               {labels.city}
             </label>
             <TextField
-              variant="outlined"
+              variant="filled"
               id="city"
               type="text"
               className="w-full"

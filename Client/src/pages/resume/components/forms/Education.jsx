@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import EditableHeading from "./components/EditableHeading";
 import { FaPlus } from "react-icons/fa6";
 import AccordionItems from "./components/AccordionItems";
@@ -11,17 +11,12 @@ function EmploymentHistory() {
   const educationData = resumeInfo?.education || []; // getting the state of education from redux toolkit
   const [headingText, setHeadingText] = useState("Education");
   const dispatch = useDispatch();
-  // const [accordions, setAccordions] = useState([
-  //   { id: 1, field_title: "(Not Specified)", content: "" },
-  // ]);
-
-  // const [accordions, setAccordions] = useState([]);
 
   const handleTextChange = (e) => {
     setHeadingText(e.target.value);
   };
   // handling new Accordion
-  const handleAddAccordian = () => {
+  const handleAddAccordian = useCallback(() => {
     const newId =
       educationData.length > 0
         ? educationData[educationData.length - 1].id + 1
@@ -29,31 +24,41 @@ function EmploymentHistory() {
     const newAccordian = {
       id: newId,
       title: "(Not Specified)",
+      degree: "",
+      start_year: "",
+      end_year: "",
+      city: "",
       description: "",
     };
-    // setAccordions([...accordions, newAccordian]);
     dispatch(
       editResumeInfo({
         ...resumeInfo,
         education: [...educationData, newAccordian],
       })
     );
-  };
+  }, [dispatch, resumeInfo]);
 
   // handling delete Accordion
-  const handleDeleteAccordian = (id) => {
-    const updatedAccordions = educationData?.filter((item) => item.id !== id);
-    dispatch(editResumeInfo({ ...resumeInfo, education: updatedAccordions })); // updating the education state after filtering the object
-  };
+  const handleDeleteAccordian = useCallback(
+    (id) => {
+      const updatedAccordions = educationData?.filter((item) => item.id !== id);
+      dispatch(editResumeInfo({ ...resumeInfo, education: updatedAccordions })); // updating the education state after filtering the object
+    },
+    [dispatch, resumeInfo]
+  );
   // handle change of the text input
-  const handleChange = (e, id) => {
-    const updatedAccordian = educationData?.map((accordion) =>
-      accordion.id === id
-        ? { ...accordion, [e.target.id]: e.target.value }
-        : accordion
-    );
-    dispatch(editResumeInfo({ ...resumeInfo, education: updatedAccordian }));
-  };
+  const handleChange = useCallback(
+    (e, id) => {
+      const updatedAccordian = educationData?.map((accordion) =>
+        accordion.id === id
+          ? { ...accordion, [e.target.id]: e.target.value }
+          : accordion
+      );
+
+      dispatch(editResumeInfo({ ...resumeInfo, education: updatedAccordian }));
+    },
+    [dispatch, resumeInfo]
+  );
   return (
     <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10 border-[#ff6666]">
       <div>

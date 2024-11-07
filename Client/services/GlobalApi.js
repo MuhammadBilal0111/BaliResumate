@@ -12,7 +12,9 @@ export const signIn = (data) => {
 export const createNewResume = (data) => {
   return api.post("/user-resume/create-resume", data);
 };
-
 export const getUserResumes = (userEmail) => {
   return api.get(`/user-resume/${userEmail}`);
+};
+export const resetPassword = (data) => {
+  return api.post("/reset-password/:token", data);
 };

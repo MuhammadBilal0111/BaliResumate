@@ -22,7 +22,28 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    resetPasswordStart: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    resetPasswordSuccess: (state, action) => {
+      state.loading = false;
+      state.error = null;
+      state.currentUser = action.payload;
+    },
+    resetPasswordFailure: (state, action) => {
+      state.loading = false;
+      state.currentUser = null;
+      state.error = action.payload;
+    },
   },
 });
-export const { signInStart, signInSuccess, signInFailure } = userSlice.actions;
+export const {
+  signInStart,
+  signInSuccess,
+  signInFailure,
+  resetPasswordStart,
+  resetPasswordSuccess,
+  resetPasswordFailure,
+} = userSlice.actions;
 export default userSlice;

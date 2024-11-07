@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import Header from "./components/Header";
 import PageNotFound from "./pages/PageNotFound";
 import EditResume from "./pages/resume/EditResume";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           path="/dashboard/resume/:resumeId/edit"
           element={<EditResume />}
         ></Route>
+        <Route path="/reset-password" element={<ResetPassword />}></Route>
         <Route path="*" element={<PageNotFound />}></Route>
       </Routes>
     </BrowserRouter>

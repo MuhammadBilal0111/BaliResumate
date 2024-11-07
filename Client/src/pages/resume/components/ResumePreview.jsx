@@ -10,7 +10,6 @@ import styles from "./scrollbar.module.css";
 
 function ResumePreview() {
   const { resumeInfo } = useSelector((state) => state.resume);
-  console.log(styles);
   return (
     <div className={`${styles["scrollbar-form"]}`}>
       <div

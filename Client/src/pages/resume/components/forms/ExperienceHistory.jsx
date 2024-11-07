@@ -27,6 +27,7 @@ function ExperienceHistory() {
       id: newId,
       title: "(Not Specified)",
       description: "",
+      
     };
     //setAccordions([...accordions, newAccordian]);
     dispatch(

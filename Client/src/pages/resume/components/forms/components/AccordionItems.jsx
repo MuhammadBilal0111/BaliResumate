@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -9,7 +9,7 @@ import Tooltip from "@mui/material/Tooltip";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
-
+import { debounce } from "lodash";
 // render the Accordion for Education, Employment components
 function AccordianItems({
   accordionItem,
@@ -19,18 +19,21 @@ function AccordianItems({
   onHandleChange,
 }) {
   const [tempDetails, setTempDetails] = useState("");
+
   const handleAccordiontDetails = (description, delta, source, editor) => {
     // Extract the plain text from the editor and trim any whitespace
-    const textContent = editor?.getText()?.trim();
+    const textContent = editor.getLength();
+    console.log(textContent);
     setTempDetails(textContent);
-
     // Only update professionalDetails if the text length is strictly less than 600
-    if (textContent.length < 700) {
-      onHandleChange(
-        { target: { id: "description", value: description } },
-        accordionItem?.id
-      );
-    }
+
+    onHandleChange(
+      { target: { id: "description", value: description } }, // event object
+      accordionItem?.id
+    );
+  };
+  const handleFieldChange = (e) => {
+    onHandleChange(e, accordionItem.id);
   };
   return (
     <Accordion className="my-3">
@@ -39,7 +42,7 @@ function AccordianItems({
         aria-controls="panel1-content"
         id="panel1-header"
         className="hover:text-blue-700 font-semibold dark:bg-black"
-        onChange={(e) => onHandleChange(e, accordionItem.id)}
+        onChange={handleFieldChange}
       >
         {accordionItem?.title}
       </AccordionSummary>
@@ -57,7 +60,7 @@ function AccordianItems({
               variant="filled"
               type="text"
               value={accordionItem?.title}
-              onChange={(e) => onHandleChange(e, accordionItem.id)}
+              onChange={handleFieldChange}
               className="w-full"
             />
           </div>
@@ -69,7 +72,7 @@ function AccordianItems({
               variant="filled"
               id={accordionItem?.degree ? "degree" : "companyName"}
               type="text"
-              onChange={(e) => onHandleChange(e, accordionItem.id)}
+              onChange={handleFieldChange}
               value={accordionItem?.degree || accordionItem?.companyName}
               className="w-full"
             ></TextField>
@@ -93,7 +96,7 @@ function AccordianItems({
                 placeholder="YYYY"
                 className="flex-1"
                 value={accordionItem?.start_year}
-                onChange={(e) => onHandleChange(e, accordionItem.id)}
+                onChange={handleFieldChange}
               />
               <TextField
                 variant="filled"
@@ -102,7 +105,7 @@ function AccordianItems({
                 placeholder="YYYY"
                 className="flex-1"
                 value={accordionItem?.end_year}
-                onChange={(e) => onHandleChange(e, accordionItem.id)}
+                onChange={handleFieldChange}
               />
             </div>
           </div>
@@ -116,7 +119,7 @@ function AccordianItems({
               type="text"
               className="w-full"
               value={accordionItem?.city}
-              onChange={(e) => onHandleChange(e, accordionItem.id)}
+              onChange={handleFieldChange}
             ></TextField>
           </div>
         </div>
@@ -140,4 +143,5 @@ function AccordianItems({
   );
 }
 
-export default AccordianItems;
+export default React.memo(AccordianItems);
+// React.memo is a higher-order component in React that optimizes the performance of functional components by preventing unnecessary re-renders. It does this by memoizing (i.e., caching) the rendered output of a component. If the component’s props have not changed between renders, React will skip re-rendering that component, improving performance especially in components with expensive rendering.

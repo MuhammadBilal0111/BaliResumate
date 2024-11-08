@@ -44,3 +44,8 @@ exports.signIn = asyncErrorHandler(async (req, res, next) => {
   }
   createSendendResponse(user, 201, res);
 });
+
+// reset password controller
+exports.resetPassword = asyncErrorHandler(async (req, res, next) => {
+  console.log(req.body);
+});

@@ -15,6 +15,6 @@ export const createNewResume = (data) => {
 export const getUserResumes = (userEmail) => {
   return api.get(`/user-resume/${userEmail}`);
 };
-export const resetPassword = (data) => {
-  return api.post("/reset-password/:token", data);
+export const resetPassword = (resetData) => {
+  return api.post("/auth/rese-password", resetData);
 };

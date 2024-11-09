@@ -49,6 +49,7 @@ function ResetPassword() {
             id="password"
             variant="outlined"
             type="password"
+            label="Enter password"
             className="w-full"
             placeholder="Enter your new password"
             inputRef={passwordElement}
@@ -59,6 +60,7 @@ function ResetPassword() {
               className="w-full"
               variant="outlined"
               type="password"
+              label="Enter confirm password"
               placeholder="Confirm your new password"
               id="confirmPassword"
               inputRef={confirmPasswordElement}
@@ -67,6 +69,7 @@ function ResetPassword() {
             <button
               type="submit"
               className="flex justify-center items-center min-w-28 ring-cyan-700 border border-gray-200 bg-white text-gray-900 enabled:hover:bg-gray-100 enabled:hover:text-cyan-700 dark:border-gray-600 dark:bg-transparent dark:text-gray-400 dark:enabled:hover:bg-gray-700 dark:enabled:hover:text-white cursor-pointer rounded-md duration-75 text-lg"
+              draggable
               // disabled={loading}
             >
               {loading ? <CircularProgress size="30px" /> : "Submit"}

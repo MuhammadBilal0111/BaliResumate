@@ -49,3 +49,8 @@ exports.signIn = asyncErrorHandler(async (req, res, next) => {
 exports.resetPassword = asyncErrorHandler(async (req, res, next) => {
   console.log(req.body);
 });
+
+// google open authentication controller
+exports.googleAuth = asyncErrorHandler(async (req, res, next) => {
+  console.log(req.body);
+});

@@ -3,15 +3,15 @@ import { Alert, TextField, Button, CircularProgress } from "@mui/material";
 import { MdEmail } from "react-icons/md";
 import { GoEyeClosed, GoEye } from "react-icons/go";
 import { FaGithub } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signIn } from "../../services/GlobalApi";
+import { signIn } from "../../../services/GlobalApi";
+import OAuth from "./components/OAuthWithGoogle";
 import {
   signInStart,
   signInSuccess,
   signInFailure,
-} from "./../store/userSlice";
+} from "../../store/userSlice";
 import { useNavigate } from "react-router-dom";
 import { toast, Bounce } from "react-toastify";
 
@@ -111,12 +111,7 @@ function SignIn() {
           <p className="text-center dark:text-gray-500">OR</p>
           <hr className="border-gray-500" />
         </div>
-        <div className="flex items-center justify-center border gap-3 border-gray-400 p-2 rounded-lg hover:bg-gray-300 hover:text-gray-800 transition-all delay-75 cursor-pointer shadow-md text-gray-400">
-          <button className="flex items-center gap-2 ">
-            <FcGoogle />
-            <span>Login with Google!</span>
-          </button>
-        </div>
+        <OAuth />
         <div className="flex items-center justify-center border gap-3 border-gray-400 p-2 rounded-lg transition-all delay-75 cursor-pointer shadow-md hover:bg-gray-300 hover:text-gray-800 text-gray-400">
           <button className="flex items-center gap-2">
             <FaGithub />

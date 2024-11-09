@@ -2,11 +2,12 @@ import React, { useRef, useState } from "react";
 import { Alert, TextField, Button, CircularProgress } from "@mui/material";
 import { MdEmail } from "react-icons/md";
 import { GoEyeClosed, GoEye } from "react-icons/go";
-import { FaGithub, FaUser } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
+import { FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { signUp } from "../../../services/GlobalApi";
-import { toast } from "react-toastify";
+import Toastify from "./components/Toastify";
+import OAuthWithGoogle from "./components/OAuthWithGoogle";
+import OAuthWithGithub from "./components/OAuthWithGithub";
 
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,16 +26,7 @@ function SignUp() {
       const res = await signUp(inputData);
       setLoading(false);
       navigate("/sign-in");
-      toast.success("Sign Up Successfully!", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      Toastify("Sign up completed successfully!");
     } catch (err) {
       setLoading(false);
       setErrorMessage(err.response.data.message);
@@ -131,7 +123,6 @@ function SignUp() {
               />
             )}
           </div>
-
           <Button type="submit" color="blue" className="w-full">
             {loading ? <CircularProgress size={"30px"} /> : "Create Account"}
           </Button>
@@ -146,18 +137,8 @@ function SignUp() {
           <p className="text-center dark:text-gray-500">OR</p>
           <hr className="border-gray-500" />
         </div>
-        <div className="flex items-center justify-center border gap-3 border-gray-400 p-2 rounded-lg hover:bg-gray-300 hover:text-gray-800 transition-all delay-75 cursor-pointer shadow-md text-gray-400">
-          <button className="flex items-center gap-2 ">
-            <FcGoogle />
-            <span>Sign Up with Google!</span>
-          </button>
-        </div>
-        <div className="flex items-center justify-center border gap-3 border-gray-400 p-2 rounded-lg transition-all delay-75 cursor-pointer shadow-md hover:bg-gray-300 hover:text-gray-800 text-gray-400">
-          <button className="flex items-center gap-2">
-            <FaGithub />
-            <span>Sign Up with Github!</span>
-          </button>
-        </div>
+        <OAuthWithGoogle />
+        <OAuthWithGithub />
         <div>
           <span className="text-gray-400">Already have an account?</span>
           <Link to={"/sign-in"}>

@@ -54,3 +54,8 @@ exports.resetPassword = asyncErrorHandler(async (req, res, next) => {
 exports.googleAuth = asyncErrorHandler(async (req, res, next) => {
   console.log(req.body);
 });
+
+// github open authentication controller
+exports.githubAuth = asyncErrorHandler(async (req, res, next) => {
+  console.log(req.body);
+});

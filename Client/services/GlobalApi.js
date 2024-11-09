@@ -9,8 +9,12 @@ export const signUp = (data) => {
 export const signIn = (data) => {
   return api.post("/auth/signIn", data);
 };
+// open authentication
 export const openAuthWithGoogle = (data) => {
   return api.post("/auth/google", data);
+};
+export const openAuthWithGithub = (data) => {
+  return api.post("/auth/github", data);
 };
 export const createNewResume = (data) => {
   return api.post("/user-resume/create-resume", data);

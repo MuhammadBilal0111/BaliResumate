@@ -2,18 +2,18 @@ import React, { useRef, useState } from "react";
 import { Alert, TextField, Button, CircularProgress } from "@mui/material";
 import { MdEmail } from "react-icons/md";
 import { GoEyeClosed, GoEye } from "react-icons/go";
-import { FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../../../services/GlobalApi";
-import OAuth from "./components/OAuthWithGoogle";
+import OAuthWithGoogle from "./components/OAuthWithGoogle";
 import {
   signInStart,
   signInSuccess,
   signInFailure,
 } from "../../store/userSlice";
 import { useNavigate } from "react-router-dom";
-import { toast, Bounce } from "react-toastify";
+import OAuthWithGithub from "./components/OAuthWithGithub";
+import Toastify from "./components/Toastify";
 
 function SignIn() {
   const { loading, error } = useSelector((state) => state.user);
@@ -31,17 +31,7 @@ function SignIn() {
       console.log(user.data);
       dispatch(signInSuccess(user.data));
       navigate("/");
-      toast.success("Login Successfully!", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        transition: Bounce,
-      });
+      Toastify("Sign in successful!"); // use to generate a toastify when sign in
     } catch (err) {
       const errorMessage =
         err.response?.data?.message || "An unexpected error occurred.";
@@ -111,13 +101,8 @@ function SignIn() {
           <p className="text-center dark:text-gray-500">OR</p>
           <hr className="border-gray-500" />
         </div>
-        <OAuth />
-        <div className="flex items-center justify-center border gap-3 border-gray-400 p-2 rounded-lg transition-all delay-75 cursor-pointer shadow-md hover:bg-gray-300 hover:text-gray-800 text-gray-400">
-          <button className="flex items-center gap-2">
-            <FaGithub />
-            <span>Login with Github!</span>
-          </button>
-        </div>
+        <OAuthWithGoogle />
+        <OAuthWithGithub />
         <div>
           <span className="text-gray-400">Don't have an account?</span>
           <Link to={"/sign-up"}>

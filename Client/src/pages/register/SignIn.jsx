@@ -13,7 +13,7 @@ import {
 } from "../../store/userSlice";
 import { useNavigate } from "react-router-dom";
 import OAuthWithGithub from "./components/OAuthWithGithub";
-import Toastify from "./components/Toastify";
+import { ToastSuccess } from "./components/Toast";
 
 function SignIn() {
   const { loading, error } = useSelector((state) => state.user);
@@ -31,7 +31,7 @@ function SignIn() {
       console.log(user.data);
       dispatch(signInSuccess(user.data));
       navigate("/");
-      Toastify("Sign in successful!"); // use to generate a toastify when sign in
+      ToastSuccess("Sign in successful!"); // use to generate a successful toast when sign in
     } catch (err) {
       const errorMessage =
         err.response?.data?.message || "An unexpected error occurred.";

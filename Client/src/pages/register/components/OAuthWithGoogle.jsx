@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { googleAuth } from "../../../firebase/authServices";
 import { openAuthWithGoogle } from "../../../../services/GlobalApi";
 import { FcGoogle } from "react-icons/fc";
-import Toastify from "./Toastify";
+import { ToastSuccess, ToastFailure } from "./Toast";
 import { useNavigate } from "react-router-dom";
 
 function OAuthWithGoogle() {
@@ -16,11 +16,11 @@ function OAuthWithGoogle() {
         googlePhotoURL: resultFromGoogle?.photoURL,
       });
       console.log(resultFromGoogle);
-      Toastify("Logged in with Google successfully!");
       navigate("/");
+      ToastSuccess("Logged in with Google successfully!");
     } catch (error) {
       console.error("Error during Google authentication:", error);
-      Toastify("An error occurred during login.");
+      ToastFailure("Error during Google authentication");
     }
   };
 

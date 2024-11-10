@@ -1,8 +1,9 @@
 import {
   getAuth,
-  signInWithPopup,
   GithubAuthProvider,
   GoogleAuthProvider,
+  signInWithPopup,
+  signInWithRedirect,
 } from "firebase/auth";
 import { app } from "./config";
 
@@ -30,7 +31,7 @@ export const githubAuth = async () => {
 // function for google Authentication
 export const googleAuth = async () => {
   try {
-    const userAuth = await signInWithPopup(auth, googleProvider);
+    const userAuth = await signInWithRedirect(auth, googleProvider);
     const user = userAuth?.user;
     return user;
   } catch (error) {

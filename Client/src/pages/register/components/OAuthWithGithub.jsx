@@ -2,7 +2,7 @@ import React from "react";
 import { FaGithub } from "react-icons/fa";
 import { openAuthWithGithub } from "../../../../services/GlobalApi";
 import { githubAuth } from "../../../firebase/authServices";
-import Toastify from "./Toastify";
+import { ToastSuccess, ToastFailure } from "./Toast";
 import { useNavigate } from "react-router-dom";
 
 function OAuthWithGithub() {
@@ -17,10 +17,11 @@ function OAuthWithGithub() {
         email: resultFromGithub?.email,
         githubPhotoURL: resultFromGithub?.photoURL,
       }); // custom method
+      ToastSuccess("Logged in with Github successfully!");
       navigate("/");
-      Toastify("Logged in with Github successfully!");
     } catch (error) {
       console.log(error);
+      ToastFailure("Error during Github authentication");
     }
   };
   return (

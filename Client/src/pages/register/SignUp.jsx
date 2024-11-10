@@ -5,7 +5,7 @@ import { GoEyeClosed, GoEye } from "react-icons/go";
 import { FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { signUp } from "../../../services/GlobalApi";
-import Toastify from "./components/Toastify";
+import { ToastSuccess } from "./components/Toast";
 import OAuthWithGoogle from "./components/OAuthWithGoogle";
 import OAuthWithGithub from "./components/OAuthWithGithub";
 
@@ -26,7 +26,7 @@ function SignUp() {
       const res = await signUp(inputData);
       setLoading(false);
       navigate("/sign-in");
-      Toastify("Sign up completed successfully!");
+      ToastSuccess("Sign up completed successfully!"); // use to generate a successful toast when sign in
     } catch (err) {
       setLoading(false);
       setErrorMessage(err.response.data.message);
